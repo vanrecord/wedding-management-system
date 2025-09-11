@@ -23,7 +23,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://chan-sovann-portfolio.vercel.app",
-        "APP_KEY": "base64:SB9NTkLD4xlbWsqishQ/ctmaOc0iT6pLEuzeaMpANPM=",
+        "APP_KEY": "base64:fufO3DGqoJgUYAm69+6VX8+X+eT9pPTaRBUtvjNtFgM=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -32,6 +32,10 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie"
+        "SESSION_DRIVER": "cookie",
+        "DB_CONNECTION": "d1",
+        "CLOUDFLARE_D1_DATABASE_ID": "3cff930b-8e33-4f66-a6e3-544f34701627",
+        "CLOUDFLARE_TOKEN": "Ssq3yDKoh0lZjL_lnmI2mPiGrPEZoVVdkTytLuqE",
+        "CLOUDFLARE_ACCOUNT_ID": "53515d023e21a1dde3a9b6d3d06fc34a"
     }
 }
