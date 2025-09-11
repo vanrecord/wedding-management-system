@@ -34,8 +34,8 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "DB_CONNECTION": "d1",
-        "CLOUDFLARE_D1_DATABASE_ID": "3cff930b-8e33-4f66-a6e3-544f34701627",
-        "CLOUDFLARE_TOKEN": "Ssq3yDKoh0lZjL_lnmI2mPiGrPEZoVVdkTytLuqE",
+        "CLOUDFLARE_D1_DATABASE_ID": "f440bc93-2ddb-4fa8-8c98-27c8b9c09b42",
+        "CLOUDFLARE_TOKEN": "_eBhdSAAeNs0SbKaG6KqhMRmFCHZZpcWvfgZ1tb8",
         "CLOUDFLARE_ACCOUNT_ID": "53515d023e21a1dde3a9b6d3d06fc34a"
     }
 }
