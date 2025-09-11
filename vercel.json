@@ -32,10 +32,6 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie",
-        "DB_CONNECTION": "d1",
-        "CLOUDFLARE_D1_DATABASE_ID": "your-database-id",
-        "CLOUDFLARE_TOKEN": "your-cloudflare-token",
-        "CLOUDFLARE_ACCOUNT_ID": "your-account-id"
+        "SESSION_DRIVER": "cookie"
     }
 }
