@@ -13,7 +13,14 @@ class UserInfosDataTable extends DataTable
 {
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return (new EloquentDataTable($query))->setRowId('id');
+        return (new EloquentDataTable($query))
+        ->setRowId('id')
+        ->addColumn('action', function ($row) {
+            $editUrl = route('userinfo.edit', $row->id);
+            $deleteUrl = route('userinfo.destroy', $row->id);
+
+            return view('UserInfo/datatables_actions', compact('editUrl', 'deleteUrl', 'row'));
+        });
     }
     public function query(UserInfo $model): QueryBuilder
     {
@@ -27,7 +34,7 @@ class UserInfosDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(1)
-                    ->selectStyleSingle()
+                    // ->selectStyleSingle()
                     ->buttons([
                         Button::make('add'),
                         Button::make('excel'),
@@ -44,9 +51,15 @@ class UserInfosDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
-            Column::make('email'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('go_with'),
+            Column::make('address'),
+            Column::make('reil'),
+            Column::make('usd'),
+            Column::computed('action')
+            ->exportable(false)
+            ->printable(false)
+            ->width(120)
+            ->addClass('text-center'),
         ];
     }
  

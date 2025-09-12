@@ -16,6 +16,5 @@
 </style>
 @endsection
 @section('content')
-  <h1>Welcome</h1>
-  <p>Click "User Form" in the menu to go to the form.</p>
+
 @endsection

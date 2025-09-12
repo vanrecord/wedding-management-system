@@ -71,33 +71,20 @@
 @section('content')
 <div class="container">
     <div style="padding-bottom:15px;">
+        @if(auth()->user())
         <button type="button" class="btn-primary"
                 onclick="window.location='{{ route('userinfo.create') }}'">
             + Create Guest's Name
         </button>
+        @endif
     </div>
     <div class="card-body">
         {{ $dataTable->table() }}
     </div>
-
-    <br>
-    <a href="javascript:history.back()">Back to Form</a>
 </div>
 @endsection
 @section('script')
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#users-table').DataTable({
-        pageLength: 5,
-        lengthChange: true,
-        searching: true,
-        ordering:  true
-    });
-});
-</script>
 @endsection
 
 

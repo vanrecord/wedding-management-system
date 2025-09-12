@@ -21,12 +21,16 @@ class UserInfoController extends Controller
 
     public function store(Request $request)
     {
+        
         $validated = $request->validate([
             'name'   => 'required|string|max:255'
         ]);
-
-        UserInfo::create($request->all());
-
+        if(!empty($request->id)){
+            app(UserInfo::class)->find($request->id)->update($request->all());
+            return redirect()->route('userinfo.index')->with('success', 'Guest updated successfully');
+        }else{
+            UserInfo::create($request->all());
+        }
         return redirect()->back()->with('success', 'Guest saved successfully');
     }
     public function show($id) {
@@ -35,5 +39,10 @@ class UserInfoController extends Controller
     public function destroy($id){
         app(UserInfo::class)->find($id)->delete();
         return redirect()->back()->with('success', 'Guest deleted successfully');
+    }
+
+    public function edit($id){
+        $user_info = app(UserInfo::class)->find($id);
+        return view('UserInfo/form',['user_info'=>$user_info]);
     }
 }
