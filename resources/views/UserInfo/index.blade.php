@@ -1,60 +1,103 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>All User Data</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;  /* center horizontally */
-            align-items: center;      /* center vertically */
-            background: #f9f9f9;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            text-align: center;
-        }
-        table {
-            border-collapse: collapse;
-            margin: 0 auto; /* center the table inside container */
-        }
-        table th, table td {
-            border: 1px solid #333;
-            padding: 6px 12px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>All User Data</h2>
+@extends('layouts.app')
+@section('title', "Guest's Name")
+@section('stylesheet')
+<style>
+    .container {
+        text-align: center;
+    }
+    table {
+        border-collapse: collapse;
+        margin: 0 auto; /* center the table inside container */
+    }
+    table th, table td {
+        border: 1px solid #333;
+        padding: 6px 12px;
+    }
+    .btn-primary {
+    background: #78d0f1;   /* light blue */
+    color: #111827;        /* dark text for contrast */
+    border: 1px solid #60a5fa;
+    }
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>DOB</th>
-                <th>Gender</th>
-                <th>Created</th>
-            </tr>
-            @foreach($user_infos as $user)
-            <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->phone }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->dob }}</td>
-                <td>{{ ucfirst($user->gender) }}</td>
-                <td>{{ $user->created_at }}</td>
-            </tr>
-            @endforeach
-        </table>
+    .btn-primary:hover {
+    background: #3b82f6;   /* darker blue on hover */
+    color: #fff;
+    }
 
-        <br>
-        <a href="javascript:history.back()">Back to Form</a>
+    .btn-secondary {
+    background: #e5e7eb;   /* gray */
+    color: #111827;
+    border: 1px solid #d1d5db;
+    }
+
+    .btn-secondary:hover {
+    background: #d1d5db;
+    }
+
+    .btn-link {
+    background: transparent;
+    color: #3b82f6;
+    border: none;
+    padding: 0;
+    }
+
+    .btn-link:hover {
+    text-decoration: underline;
+    }
+
+    button:active,
+    .btn-link:active { 
+    transform: translateY(1px) scale(0.998); 
+    }
+
+    button {
+    appearance: none;
+    padding: 12px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.06s ease, filter 0.2s ease, background 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    }
+    .btn-delete{
+        color:red;
+    }
+
+</style>
+@endsection
+
+@section('content')
+<div class="container">
+    <div style="padding-bottom:15px;">
+        <button type="button" class="btn-primary"
+                onclick="window.location='{{ route('userinfo.create') }}'">
+            + Create Guest's Name
+        </button>
     </div>
-</body>
-</html>
-<label style=""></label>
+    <div class="card-body">
+        {{ $dataTable->table() }}
+    </div>
+
+    <br>
+    <a href="javascript:history.back()">Back to Form</a>
+</div>
+@endsection
+@section('script')
+{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#users-table').DataTable({
+        pageLength: 5,
+        lengthChange: true,
+        searching: true,
+        ordering:  true
+    });
+});
+</script>
+@endsection
+
+
