@@ -8,8 +8,7 @@ Route::get('/', function () {
     return view('home');
 });
 Route::resource('/userinfo', UserInfoController::class);
-// Auth::routes();
 Auth::routes(['register' => false]);
-
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
