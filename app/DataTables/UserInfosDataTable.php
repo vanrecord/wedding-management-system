@@ -16,10 +16,13 @@ class UserInfosDataTable extends DataTable
         return (new EloquentDataTable($query))
         ->setRowId('id')
         ->addColumn('action', function ($row) {
-            $editUrl = route('userinfo.edit', $row->id);
+            if( !empty(auth()->user()) ) {
+                $editUrl = route('userinfo.edit', $row->id);
             $deleteUrl = route('userinfo.destroy', $row->id);
 
             return view('UserInfo/datatables_actions', compact('editUrl', 'deleteUrl', 'row'));
+            }
+            
         });
     }
     public function query(UserInfo $model): QueryBuilder
@@ -48,19 +51,29 @@ class UserInfosDataTable extends DataTable
  
     public function getColumns(): array
     {
-        return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('go_with'),
-            Column::make('address'),
-            Column::make('reil'),
-            Column::make('usd'),
-            Column::computed('action')
+        $columns =  [
+            Column::make('code')
+            ->addClass('text-center'),
+            Column::make('name')
+            ->addClass('text-center'),
+            Column::make('go_with')
+            ->addClass('text-center'),
+            Column::make('address')
+            ->addClass('text-center'),
+            Column::make('reil')
+            ->orderable(false)
+            ->addClass('text-center'),
+            Column::make('usd')
+            ->orderable(false)
             ->exportable(false)
             ->printable(false)
             ->width(120)
             ->addClass('text-center'),
         ];
+        if( !empty(auth()->user()) ) {
+            $columns[] = Column::computed('action');
+        }
+        return $columns;
     }
  
     protected function filename(): string

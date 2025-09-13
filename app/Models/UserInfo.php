@@ -15,5 +15,22 @@ class UserInfo extends Model
         'address',
         'reil',
         'usd',
+        'code'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $last = static::orderBy('id', 'desc')->first();
+            if (!$last) {
+                $number = 1;
+            } else {
+                $lastNumber = (int) $last->code;
+                $number = $lastNumber + 1;
+            }
+            $model->code = $number;
+        });
+    }
 }
