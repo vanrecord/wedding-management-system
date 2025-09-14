@@ -20,8 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(\Illuminate\Contracts\Routing\UrlGenerator $url)
     {info(env('APP_ENV')); info('appservice');
+        URL::forceScheme('https');
         if (env('APP_ENV') !== 'local') { info(999);
-            URL::forceScheme('https');
+            
         }
     }
 }
