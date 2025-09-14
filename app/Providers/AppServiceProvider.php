@@ -21,10 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(\Illuminate\Contracts\Routing\UrlGenerator $url)
     {
         if (env('APP_ENV') !== 'local') {
-            $url->forceScheme('https');
-        }
-
-        if (!app()->environment('local')) {
             URL::forceScheme('https');
         }
     }
