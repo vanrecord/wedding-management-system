@@ -10,9 +10,8 @@ use App\DataTables\UserInfosDataTable;
 class UserInfoController extends Controller
 {
     public function index(UserInfosDataTable $dataTable) {
-        $user_info = App(UserInfo::class)->all();
+        // $user_info = App(UserInfo::class)->all();
         return $dataTable->render('UserInfo.index');
-        // return view('UserInfo/index',['user_infos'=>$user_info]);
     }
 
     public function create(){
