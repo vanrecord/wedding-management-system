@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(\Illuminate\Contracts\Routing\UrlGenerator $url)
-    {info(env('APP_ENV')); dd('appservice');
+    {info(env('APP_ENV')); info('appservice');
         if (env('APP_ENV') !== 'local') { info(999);
             URL::forceScheme('https');
         }
