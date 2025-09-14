@@ -18,9 +18,9 @@ class UserInfosDataTable extends DataTable
         ->addColumn('action', function ($row) {
             if( !empty(auth()->user()) ) {
                 $editUrl = route('userinfo.edit', $row->id);
-            $deleteUrl = route('userinfo.destroy', $row->id);
+                $deleteUrl = route('userinfo.destroy', $row->id);
 
-            return view('UserInfo/datatables_actions', compact('editUrl', 'deleteUrl', 'row'));
+                return view('UserInfo/datatables_actions', compact('editUrl', 'deleteUrl', 'row'));
             }
             
         });
@@ -35,7 +35,8 @@ class UserInfosDataTable extends DataTable
         return $this->builder()
                     ->setTableId('users-table')
                     ->columns($this->getColumns())
-                    ->minifiedAjax()
+                    // ->minifiedAjax()
+                    ->minifiedAjax(route('userinfo.index'))
                     ->orderBy(1)
                     // ->selectStyleSingle()
                     ->buttons([
